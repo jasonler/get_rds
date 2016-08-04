@@ -58,6 +58,11 @@ ali.DBInstanceid = my_rdsname
 ali.StartTime = d1
 ali.EndTime =  d2
 
+#每次执行前先清空rds.swap的内容，以便其它脚本判断是否下载成功（空：表示无备份下载）
+swapfile=open(BackUpPath+'rds.swap','w')
+swapfile.write("")
+swapfile.close
+
 #获取备份列表，在现有模式下，1天仅1个全备份
 try:
   f = ali.getResponse()
